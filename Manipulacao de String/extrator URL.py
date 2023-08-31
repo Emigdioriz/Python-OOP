@@ -1,3 +1,5 @@
+import re
+
 class ExtratorURL:
     def __init__(self, url):
         self.url = self.sanitiza_url(url)
@@ -12,6 +14,11 @@ class ExtratorURL:
     def valida_url(self):
         if not self.url:
             raise ValueError("A URL está vazia")
+        
+        padrao_url = re.compile('(http(s)?://)?(www.)?bytebank.com(.br)?/cambio')
+        match = padrao_url.match(self.url)
+        if not match:
+            raise ValueError("A URL não é válida")
 
     def get_url_base(self):
         indice_interrogacao = self.url.find('?')
@@ -32,8 +39,20 @@ class ExtratorURL:
         else:
             valor = self.get_url_parametros()[indice_valor:indice_e_comercial]    
         return valor
+    
+    def __len__(self):
+        return len(self.url)
+    
+    def __str__(self):
+        return "URL completa: "  +  self.url + "\n" + "Parâmetros: " + self.get_url_parametros() + "\n" + "URL Base: " + self.get_url_base()
 
+    def __eq__(self, other):
+        return self.url == other.url
 
-extrator_url = ExtratorURL("bytebank.com/cambio?quantidade=100&moedaDestino=dolar&moedaOrigem=real")     
-valor_quantidade = extrator_url.get_valor_parametro('quantidade')
-print(valor_quantidade)
+url = "bytebank.com/cambio?quantidade=100&moedaDestino=dolar&moedaOrigem=real"
+extrator_url = ExtratorURL(url)     
+extrator_url_2 = ExtratorURL(url)
+
+print(extrator_url == extrator_url_2) # extrator_url.__eq__(extrator_url_2), python realiza isso (compara os endereços de memória dos objs) por traz ao fazermos a comparação, por isso temos q reescrever o método __eq__
+print(extrator_url)
+
