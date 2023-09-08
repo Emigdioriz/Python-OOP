@@ -1,0 +1,73 @@
+Este arquivo é somente para estudos, não faz parte do projeto(resolvi subir pro github assim mesmo).
+
+
+TESTE MANUAL
+
+- Lento = o teste precisa entender o código e suas funcionalidades
+para que seja possível criar um teste personalizado.
+
+- Sujeito a falhas (fator humano) 
+
+- Incoveniente = após desenvolver todo o código, teria que voltar e 
+desenvover todo um teste para analisar o código que vc já desenvolveu.
+
+
+TESTE AUTOMATIZADO 
+
+- Automatizado  
+
+- Feedback rápido = retornos necessário para os pontos de melhoria
+
+- Segurança em alteração do código  
+
+- 'Refactoring' = testes automatizado influência o refatoramento de códigos 
+
+
+TESTE UNITÁRIO = pega uma pequena parte de um código/aplicação, ex uma classe, um método. 
+TESTE INTEGRAÇÃO = busca testar a integração entre as pequenas unidades de um aplicação. 
+TESTE de ponta a ponta (E2E) = Testa a apliçaão toda. Simula o usuário da aplicação e/ou
+o ambiente de aplicação.
+
+
+METODOLOGIDAS 
+
+-Given-When-then
+    dado(contexto) - Quando(Ação) - então(desfecho)
+
+- Arrange-Act_Assert (AAA)
+    Organizar(montar o contexto inicial do teste)
+    
+    Agir(Ação que parte dos passos organizado na primeira etapa e leva ao que vamos averiguar
+    no final)
+
+    Averiguar(averiguamos que o desfecho trazido pela ação é realmente aquele que esperamos)
+
+
+TDD (test driven development)
+    Primeiro é criado o teste, depois é criado a implementação.
+    Caso o código passe no teste é necessário uma refatoração e novos testes.
+    Ao final do desenvolvimento de um software funcional utilizando o
+     TDD, teremos uma série de arquivos de testes que expõem de forma 
+     direta o que cada porção do código da aplicação deve desempenhar. 
+     Assim, as funcionalidades estarão de acordo com as regras de negócio.
+
+
+PYTEST
+    Uso simples: pytest -v # testa todos os teste do arquivo de forma verbosa
+    Testar um teste específico: pytest -k palavra_unica_no_nome_do_teste
+                            ou: pytest -v -k ....
+    Também temos a possibilidade de usar os marks, uteis para especificar algum teste
+        que desejamos executar juntos ou separados: pytest -v -m nome_mark.
+        Existem vários tipos de marks, vale a pena dar uma olhada na documentação do pytest.
+    Usando o Pytest COV para checar a cobertura dos testes em nosso código:
+        pytest --cov 
+        pytest --cov=pasta_código pasta_teste
+        pytest --cov=pasta_código pasta_teste/ --cov-report term-missing
+        pytest --cov=codigo tests/ --cov-report html (cria um arquivo
+            index.html para melhor visualização da cobertura do codigo)
+
+    No arquivo .coverarc podemos especificar diversos parametros para o uso do
+        cov, como pasta de destino, quais metodos ignorar, como nomear a pasta de
+        relatórios html.
+
+    Gerar relatórios em xml: pytest --junitxml report.xml         
