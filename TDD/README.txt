@@ -1,4 +1,4 @@
-Esta pasta trata-se de o desenvolvimento de testes unitários de um código de um terceiro (bytebank.py).
+Esta pasta trata-se de o desenvolvimento de testes de um código de um terceiro (bytebank.py).
 
 Neste projeto usamos como referência o arquivo bytebank.py para desenvolvemos testes automatizados, 
 também refatoramos o codigo bytebank.py para o bytebank_corrigido.py (que se encontra no diretorio codigos).
